@@ -1,30 +1,30 @@
 import java.io.Serializable
 
-class Usuario   /*(var email:String,
+data class Usuario (var email:String,
                  var nombre:String,
                  var apellido:String,
                  var edad:Int,
                  var pass:String,
                  var esAdmin:Boolean=false,
-                 var esEstandar:Boolean=true)*/:Serializable {
+                 var esEstandar:Boolean=true):Serializable {
 
 
-    lateinit var email:String
+   /* lateinit var email:String
     lateinit var nombre:String
     lateinit var apellido:String
     var edad:Int = 0
     lateinit var pass:String
     var esAdmin:Boolean=false
-    var esEstandar:Boolean=true
+    var esEstandar:Boolean=true*/
 
-    constructor(){}
+   /* constructor(){}
     constructor(email: String, nombre: String, apellido: String, edad: Int, pass: String) {
         this.email = email
         this.nombre = nombre
         this.apellido = apellido
         this.edad = edad
         this.pass = pass
-    }
+    }*/
 
     fun registrar():Usuario {
         println("Registro de usuario:")
