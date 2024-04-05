@@ -5,13 +5,16 @@ import kotlin.collections.ArrayList
 class GestionarFicheros {
 
     private val archivo= "usuario.dat"
+    private var listaUsuarios=ArrayList<Usuario>()
     fun registrar(usuario: Usuario){
-        var usuarios=leerUsuarios()
-        usuarios.add(usuario)
-        val fileOutputStream = FileOutputStream(archivo,true)
-        val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        objectOutputStream.writeObject(usuarios)
-        objectOutputStream.close()
+        //var usuarios=leerUsuarios()
+        listaUsuarios.add(usuario)
+        println("Usuario añadido....")
+        guardarUsuarios(listaUsuarios)
+//        val fileOutputStream = FileOutputStream(archivo,true)
+//        val objectOutputStream = ObjectOutputStream(fileOutputStream)
+//        objectOutputStream.writeObject(usuarios)
+//        objectOutputStream.close()
     }
 
     fun mostrarTodas() {
