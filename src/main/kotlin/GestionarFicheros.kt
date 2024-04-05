@@ -6,6 +6,10 @@ class GestionarFicheros {
 
     private val archivo= "usuario.dat"
     private var listaUsuarios=ArrayList<Usuario>()
+    init {
+        listaUsuarios=leerUsuarios()
+    }
+
     fun registrar(usuario: Usuario){
         //var usuarios=leerUsuarios()
         listaUsuarios.add(usuario)
@@ -57,7 +61,7 @@ class GestionarFicheros {
         }
         objectOutputStream.close()
     }
-    private fun leerUsuarios(): List<Usuario> {
+    private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
         if (archivo.exists()) {
