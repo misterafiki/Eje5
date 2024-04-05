@@ -27,7 +27,7 @@ class GestionarFicheros {
             println("Listado de Usuarios:")
             var index = 0
             for (usuario in usuarios) {
-                println("${index}. ${usuario.nombre} - ${usuario.apellido} (${usuario.email}), ${usuario.edad}")
+                println("${index}. ${usuario.nombre}  ${usuario.apellido} (${usuario.email}), ${usuario.edad}")
                 index++
             }
         } else {
