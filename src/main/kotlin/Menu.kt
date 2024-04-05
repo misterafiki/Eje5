@@ -2,7 +2,6 @@ class Menu {
 
     companion object {
 
-
         fun menuPrincipal() {
             println("Bienvenido al sistema:")
             println("1.- Login")
@@ -21,7 +20,6 @@ class Menu {
                 }
             }
         }
-
 
         fun menuAdmin() {
             val USER=Usuario()
@@ -51,28 +49,10 @@ class Menu {
             }
         }
 
-
             fun salida(): String {
                 return "¡Hasta luego!"
             }
 
     }
-
-    fun anadirUsuario() {
-        GestionarFicheros().registrar()
-    }
-
-    fun mostrarUsuarios() {
-        GestionarFicheros().mostrartodo()
-    }
-
-    fun borarUsuario() {
-        GestionarFicheros().BorraUsuario()
-    }
-
-    fun BuscarEmail() {
-        GestionarFicheros().mostrarUsuarioEmail()
-    }
-
 
 }
