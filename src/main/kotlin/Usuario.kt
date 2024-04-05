@@ -1,10 +1,12 @@
+import java.io.Serializable
+
 class Usuario   /*(var email:String,
                  var nombre:String,
                  var apellido:String,
                  var edad:Int,
                  var pass:String,
                  var esAdmin:Boolean=false,
-                 var esEstandar:Boolean=true)*/ {
+                 var esEstandar:Boolean=true)*/:Serializable {
 
 
     lateinit var email:String
@@ -40,7 +42,7 @@ class Usuario   /*(var email:String,
         val usuario = Usuario(email, nombre, apellidos, edad, claveAcceso)
         return usuario
     }
-    fun login() {
+   /* fun login() {
         println("Inicio de sesión:")
         print("Email: ")
         val email = readLine()!!
@@ -62,7 +64,7 @@ class Usuario   /*(var email:String,
             println("Email o contraseña incorrectos.")
             menuPrincipal()
         }
-    }
+    }*/
 
     fun adivinarNumero() {
 
