@@ -11,8 +11,8 @@ fun main() {
                  GestionarFicheros().login(usuario)
             }
             2 -> {
-                var usuario=Usuario().registrar()
-                GestionarFicheros().registar(usuario)
+                var usuario=Usuario()
+                usuario.registrar()
 
                 }
             3 -> {
