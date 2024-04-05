@@ -2,54 +2,68 @@ import java.io.*
 import java.util.*
 class GestionarFicheros {
 
-    val archivo= "archivo.txt"
-
-    fun login(email:String,pass:String){
-            val usuarios = leerFichero()
-            val emailBuscado= email.lowercase()
-            //val passBuscado=pass
-            var encontrado= false
-            for (i in usuarios){
-                if (i.lowercase().startsWith(emailBuscado)){
-                    var nuevai=i.split(",")
-                    if (nuevai[3]==pass){
-                        encontrado=true
-                    }
-                }
+    val archivo= "usuario.dat"
+    fun mostrarTodas() {
+        val usuarios = leerUsuarios()
+        if (usuarios.isNotEmpty()) {
+            println("Listado de Usuarios:")
+            var index = 0
+            for (usuario in usuarios) {
+                println("${index}. ${usuario.nombre} - ${usuario.apellido} (${usuario.email}), ${usuario.edad}")
+                index++
             }
-            if (encontrado && Usuario().esEstandar && !Usuario().esAdmin) {
-                println("Bienvenido ${Usuario().nombre}")
-                Juego().adivinarNumero()
-            } else if (encontrado && Usuario().esEstandar && Usuario().esAdmin){
-                Menu.mostrarMenuEstandar()
-                Menu.mostrarMenuAdmin()
-            }else if (encontrado && !Usuario().esEstandar &&Usuario().esAdmin){
-                Menu.mostrarMenuAdmin()
-            }else println("email o contraseña incorrectos")
-
+        } else {
+            println("No hay usuarios para mostrar.")
         }
-
-    fun leerFichero(): List<String> {
-            val usuarios = arrayListOf<String>()
-            val archivo = File(archivo) //File te permite moverte por "explorador", si no existe, no arroja error, se guarda que no existe (JAVA devuelve un null)
-            if (archivo.exists()) {
-                var bufferedReader: BufferedReader? = null //trozo de memoria compartido/reservado con el programa
-                try {
-                    bufferedReader =
-                        BufferedReader(FileReader(archivo)) //se abre el canal con el archivo para poder ir leyendo
-                    var linea: String? = bufferedReader.readLine() //puede ser null
-                    while (linea != null) {
-                        usuarios.add(linea)
-                        linea = bufferedReader.readLine()
-                    }
-                } finally {
-                    bufferedReader?.close() //cerramos la comunicacion con el SO
-                }
+    }
+    fun borrarUusario(email: String) {
+        val peliculas = leerUsuarios()
+        val emailBuscado = email.lowercase(Locale.getDefault())
+        var encontrada = false
+        val nuevasPeliculas = arrayListOf<Usuario>()
+        for (pelicula in peliculas) {
+            if (pelicula.email.toLowerCase().startsWith(emailBuscado)) {
+                encontrada = true
+            } else {
+                nuevasPeliculas.add(pelicula)
             }
-            return usuarios
         }
-
-    fun leerUsuarios(): List<Usuario> {
+        if (encontrada) {
+            guardarUsuarios(nuevasPeliculas)
+            println("Película borrada correctamente.")
+        } else {
+            println("No se encontró ninguna película con ese título.")
+        }
+    }
+    private fun guardarUsuarios(usuarios: List<Usuario>) {
+        val fileOutputStream = FileOutputStream(archivo)
+        val objectOutputStream = ObjectOutputStream(fileOutputStream)
+        for (pelicula in usuarios) {
+            objectOutputStream.writeObject(pelicula)
+        }
+        objectOutputStream.close()
+    }
+    private fun leerUsuarios(): List<Usuario> {
+        val usuarios = arrayListOf<Usuario>()
+        val archivo = File(archivo)
+        if (archivo.exists()) {
+            var objectInputStream: ObjectInputStream? = null
+            try {
+                objectInputStream = ObjectInputStream(FileInputStream(archivo))
+//                println(listOf(objectInputStream).size)
+                while (true) {
+                    val usuario = objectInputStream.readObject() as Usuario
+                    usuarios.add(usuario)
+                }
+            } catch (e: EOFException) {
+                // Se alcanzó el final del archivo
+            } finally {
+                objectInputStream?.close()
+            }
+        }
+        return usuarios
+    }
+    /*fun leerUsuarios(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
         File(archivo).forEachLine { linea ->
             val datos = linea.split(",")
@@ -66,5 +80,5 @@ class GestionarFicheros {
             )
         }
         return usuarios
-    }
+    }*/
 }
