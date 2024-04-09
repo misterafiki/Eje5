@@ -36,7 +36,7 @@ class GestionarFicheros {
     }
     fun borrarUusario(email: String) {
         val listaUsuarios = leerUsuarios()
-        val emailBuscado = email.lowercase(Locale.getDefault())
+        /*val emailBuscado = email.lowercase(Locale.getDefault())
         var encontrada = false
         val listaUsuariosBorrar = arrayListOf<Usuario>()
         for (usuario in listaUsuarios) {
@@ -45,13 +45,16 @@ class GestionarFicheros {
             } else {
                 listaUsuariosBorrar.add(usuario)
             }
-        }
+        }*/
+        val listaUsuariosBorrar = arrayListOf<Usuario>()
+        listaUsuariosBorrar.add(usuario)
         if (encontrada) {
             for (usuarioParaBorrar in listaUsuariosBorrar) {
                 listaUsuarios.remove(usuarioParaBorrar)
             }
             guardarUsuarios(listaUsuarios)
             println("Usuario borrado correctamente.")
+
         } else {
             println("No se encontró ningun usuario con ese email.")
         }
