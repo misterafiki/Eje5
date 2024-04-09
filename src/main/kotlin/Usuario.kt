@@ -1,3 +1,4 @@
+import conexionBBDD.InterfacesUsuarios
 import java.io.Serializable
 
 data class Usuario (var email:String,
@@ -6,7 +7,7 @@ data class Usuario (var email:String,
                  var edad:Int,
                  var pass:String,
                  var esAdmin:Boolean=false,
-                 var esEstandar:Boolean=true):Serializable {
+                 var esEstandar:Boolean=true):Serializable, InterfacesUsuarios {
 
 
    /* lateinit var email:String
@@ -49,7 +50,7 @@ data class Usuario (var email:String,
         print("Clave de acceso: ")
         val claveAcceso = readLine()!!
 
-        val usuarios = GestionarFicheros().leerUsuarios()
+        val usuarios = AccesoDatos.GestionarFicheros().leerUsuarios()
         val usuario = usuarios.find { it.email == email && it.pass == claveAcceso }
 
         if (usuario != null) {

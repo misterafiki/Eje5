@@ -1,3 +1,6 @@
+package AccesoDatos
+
+import Usuario
 import java.io.*
 import java.util.*
 import kotlin.collections.ArrayList
