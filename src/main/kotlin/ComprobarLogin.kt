@@ -7,17 +7,7 @@ class ComprobarLogin {
         }
         return passCorrecta
     }
-    fun buscarUsuario(email:String):Usuario?{
-        var us:Usuario?=null
-        var g=GestionarFicheros()               // llevar a GestionarFicheros
-        var listaUsuarios=g.leerUsuarios()
-        for (usuario in listaUsuarios){
-            if (email==usuario.email){
-                us=usuario
-            }
-        }
-        return us
-    }
+
 
 
 }

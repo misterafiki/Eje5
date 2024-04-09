@@ -1,18 +1,37 @@
 class Registrar {
     fun registrar():Usuario {
-        println("Registro de usuario:")
-        print("Email: ")
-        val email = readLine()!!
-        print("Nombre: ")
-        val nombre = readLine()!! // controlar que meta de la a a la z
-        print("Apellidos: ")
-        val apellidos = readLine()!! // separar en dos variables que juntare al crar el usuario
-        print("Edad: ")
-        val edad = readLine()?.toIntOrNull() ?: 0
-        print("Clave de acceso: ")
-        val claveAcceso = readLine()!!
+        var email =""
+        var nombre =""
+        var apellido1 =""
+        var apellido2=""
+        var edad=0
+            println("Registro de usuario:")
+        do {
+            print("Email: ")
+            email = readLine()!!
+        }while (!ControlErrores.validarEmail(email))
+       do {
+           print("Nombre: ")
+           nombre = readLine()!!
+       }while (!ControlErrores.validarNombreApellido(nombre))
+        do {
+            print("Primer Apellido: ")
+            apellido1 = readLine()!!
+        }while (!ControlErrores.validarNombreApellido(apellido1))
+       do {
+           print("Segundo Apellido: ")
+           apellido2= readLine()!!
+       }while (!ControlErrores.validarNombreApellido(apellido2))
+       do {
+           print("Edad: ")
+           edad = readLine()?.toIntOrNull() ?: 0
+       }while (!ControlErrores.validarEdad(edad))
 
-        val usuario = Usuario(email, nombre, apellidos, edad, claveAcceso)
+        print("Clave de acceso: ")
+        var claveAcceso = readLine()!!
+
+
+        val usuario = Usuario(email, nombre, apellido1+" "+apellido2, edad, claveAcceso)
         return usuario
     }
 }

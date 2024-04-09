@@ -83,6 +83,16 @@ class GestionarFicheros {
         }
         return usuarios
     }
+    fun buscarUsuario(email:String):Usuario?{
+        var us:Usuario?=null
+        listaUsuarios=leerUsuarios()
+        for (usuario in listaUsuarios){
+            if (email==usuario.email){
+                us=usuario
+            }
+        }
+        return us
+    }
     /*fun leerUsuarios(): List<Usuario> {
         val usuarios = mutableListOf<Usuario>()
         File(archivo).forEachLine { linea ->

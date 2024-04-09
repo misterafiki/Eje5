@@ -7,6 +7,23 @@ class ControlErrores {
         if (email.matches(patron.toRegex())) correcto = true
         return correcto
     }
+        fun validarNombreApellido(dato:String):Boolean{
+            var esCorrecto=false
+            var abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+            for(i in dato){
+                if (abecedario.contains(i.uppercase())){
+                    esCorrecto=true
+                }
+            }
+            return esCorrecto
+        }
+        fun validarEdad(edad:Int?):Boolean{
+            var esCorrecto=false
+            if (edad!= null && edad>0 && edad<=200){
+                esCorrecto=true
+            }
+            return esCorrecto
+        }
 
 }
 
