@@ -13,10 +13,12 @@ class Implementacion : InterfacesUsuarios {
         val ps = conexion.getPreparedStatement(query)
         ps?.setInt(1, email)
         val rs = ps?.executeQuery()
-        var usuario: InterfacesUsuarios? = null
+        var usuario: Usuario? = null
         if (rs?.next() == true) {
-            usuario = Usuario(rs.getString("email"), rs.getString("nombre"), rs.getString("apellido"), rs.getInt("edad"))
-        }
+            usuario = Usuario(rs.getString("email"), rs.getString("nombre"),
+                rs.getString("apellido"), rs.getInt("edad"),rs.getString("pass"),
+                rs.getBoolean("esAdmin"),rs.getBoolean("esEstandar"))
+            }
         ps?.close()
         conexion.desconectar()
         return usuario
@@ -27,45 +29,52 @@ class Implementacion : InterfacesUsuarios {
         val query = "SELECT * FROM usuarios"
         val st = conexion.getStatement()
         val rs = st?.executeQuery(query)
-        val usuarios = mutableListOf<Usuario>()
+        val usuarios = ArrayList<Usuario>()
         while (rs?.next() == true) {
-            val categoria = Usuario(rs.getInt("email"), rs.getString("nombre"))
-            usuarios.add(categoria)
+            val usuario = Usuario(rs.getString("email"), rs.getString("nombre"),
+                rs.getString("apellido"), rs.getInt("edad"),rs.getString("pass"),
+                rs.getBoolean("esAdmin"),rs.getBoolean("esEstandar"))
+            usuarios.add(usuario)
         }
         st?.close()
         conexion.desconectar()
         return usuarios
     }
-
-    override fun insertUsuario(email: Usuario): Boolean {
+    /**Falta por terminar el insert, delete y update configuracion correspondiente al Gestion fichero **/
+    override fun insertUsuario(usuario: Usuario): Boolean {
         conexion.conectar()
-        val query = "INSERT INTO usuarios (email, nombre) VALUES (?, ?)"
+        val query = "INSERT INTO usuarios (email, nombre, apellidos, edad, pass, esAdmin, esEstandar) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setInt(1, categoria.codigo)
-        ps?.setString(2, categoria.nombre)
+        ps?.setString(1, usuario.email)
+        ps?.setString(2, usuario.nombre)
+        ps?.setString(3, usuario.apellido)
+        ps?.setInt(4, usuario.edad)
+        ps?.setString(5, usuario.pass)
+        ps?.setBoolean(6, usuario.esAdmin)
+        ps?.setBoolean(7, usuario.esEstandar)
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()
         return result == 1
     }
 
-    override fun updateusuario(email: Usuario): Boolean {
+    override fun updateusuario(usuario: Usuario): Boolean {
         conexion.conectar()
         val query = "UPDATE usuarios SET nombre = ? WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setString(1, categoria.nombre)
-        ps?.setInt(2, categoria.codigo)
+        ps?.setString(1, usuario.nombre)
+        ps?.setString(2, usuario.email)
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()
         return result == 1
     }
 
-    override fun deleteUsuario(codigo: Int): Boolean {
+    override fun deleteUsuario(codigo: String): Boolean {
         conexion.conectar()
         val query = "DELETE FROM usuarios WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setInt(1, codigo)
+        ps?.setString(1, codigo)
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()

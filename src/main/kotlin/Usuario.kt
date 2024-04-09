@@ -1,14 +1,23 @@
 import conexionBBDD.InterfacesUsuarios
 import java.io.Serializable
+import Usuario as Usuario
 
-data class Usuario (var email:String,
-                 var nombre:String,
-                 var apellido:String,
-                 var edad:Int,
-                 var pass:String,
-                 var esAdmin:Boolean=false,
-                 var esEstandar:Boolean=true):Serializable, InterfacesUsuarios {
 
+class Usuario (var email:String,
+                        var nombre:String,
+                        var apellido:String,
+                        var edad:Int,
+                        var pass:String,
+                        var esAdmin:Boolean=false,
+                        var esEstandar:Boolean=true) {
+
+/*class Usuario (var email:String,
+               var nombre:String,
+               var apellido:String,
+               var edad:Int,
+               var pass:String,
+               var esAdmin:Boolean=false,
+               var esEstandar:Boolean=true):Serializable {*/
 
    /* lateinit var email:String
     lateinit var nombre:String
@@ -25,46 +34,6 @@ data class Usuario (var email:String,
         this.apellido = apellido
         this.edad = edad
         this.pass = pass
-    }*/
-
-    fun registrar():Usuario {
-        println("Registro de usuario:")
-        print("Email: ")
-        val email = readLine()!!
-        print("Nombre: ")
-        val nombre = readLine()!!
-        print("Apellidos: ")
-        val apellidos = readLine()!!
-        print("Edad: ")
-        val edad = readLine()?.toIntOrNull() ?: 0
-        print("Clave de acceso: ")
-        val claveAcceso = readLine()!!
-
-        val usuario = Usuario(email, nombre, apellidos, edad, claveAcceso)
-        return usuario
-    }
-   /* fun login() {
-        println("Inicio de sesión:")
-        print("Email: ")
-        val email = readLine()!!
-        print("Clave de acceso: ")
-        val claveAcceso = readLine()!!
-
-        val usuarios = AccesoDatos.GestionarFicheros().leerUsuarios()
-        val usuario = usuarios.find { it.email == email && it.pass == claveAcceso }
-
-        if (usuario != null) {
-            println("Inicio de sesión exitoso.")
-            if (usuario.esAdmin) {
-                menuAdmin()
-            } else {
-                // Aquí se podría llamar a la función para jugar el juego
-                println("Bienvenido, ${usuario.nombre}.")
-            }
-        } else {
-            println("Email o contraseña incorrectos.")
-            menuPrincipal()
-        }
     }*/
 
     fun adivinarNumero() {
