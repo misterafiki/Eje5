@@ -35,29 +35,32 @@ class GestionarFicheros {
         }
     }
     fun borrarUusario(email: String) {
-        val peliculas = leerUsuarios()
+        val listaUsuarios = leerUsuarios()
         val emailBuscado = email.lowercase(Locale.getDefault())
         var encontrada = false
-        val nuevasPeliculas = arrayListOf<Usuario>()
-        for (pelicula in peliculas) {
-            if (pelicula.email.toLowerCase().startsWith(emailBuscado)) {
+        val listaUsuariosBorrar = arrayListOf<Usuario>()
+        for (usuario in listaUsuarios) {
+            if (usuario.email.toLowerCase().startsWith(emailBuscado)) {
                 encontrada = true
             } else {
-                nuevasPeliculas.add(pelicula)
+                listaUsuariosBorrar.add(usuario)
             }
         }
         if (encontrada) {
-            guardarUsuarios(nuevasPeliculas)
-            println("Película borrada correctamente.")
+            for (usuarioParaBorrar in listaUsuariosBorrar) {
+                listaUsuarios.remove(usuarioParaBorrar)
+            }
+            guardarUsuarios(listaUsuarios)
+            println("Usuario borrado correctamente.")
         } else {
-            println("No se encontró ninguna película con ese título.")
+            println("No se encontró ningun usuario con ese email.")
         }
     }
     private fun guardarUsuarios(usuarios: List<Usuario>) {
         val fileOutputStream = FileOutputStream(archivo)
         val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        for (pelicula in usuarios) {
-            objectOutputStream.writeObject(pelicula)
+        for (usuario in usuarios) {
+            objectOutputStream.writeObject(usuario)
         }
         objectOutputStream.close()
     }
