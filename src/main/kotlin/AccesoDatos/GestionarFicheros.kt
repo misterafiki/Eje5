@@ -7,18 +7,15 @@ import kotlin.collections.ArrayList
 
 class GestionarFicheros {
 
-    private val archivo= "usuario.dat"
+    //private val archivo= "usuario.dat"
     private var listaUsuarios=ArrayList<Usuario>()
     init {
         listaUsuarios=leerUsuarios()
     }
 
     fun registrar(usuario: Usuario){
-        var usuarios=leerUsuarios()
-        listaUsuarios.add(usuario)
         println("Usuario añadido....")
-        guardarUsuarios(listaUsuarios)
-
+        guardarUsuarios(usuario)
     }
 
     fun mostrarTodas() {
@@ -27,7 +24,7 @@ class GestionarFicheros {
             println("Listado de Usuarios:")
             var index = 0
             for (usuario in usuarios) {
-                println("${index}. ${usuario.nombre}  ${usuario.apellido} (${usuario.email}), ${usuario.edad}")
+                println("${index}. : nombre${usuario.nombre}  ${usuario.apellido}, email: ${usuario.email}, edad: ${usuario.edad}")
                 index++
             }
         } else {
@@ -59,7 +56,10 @@ class GestionarFicheros {
             println("No se encontró ningun usuario con ese email.")
         }
     }
-    private fun guardarUsuarios(usuarios: List<Usuario>) {
+    private fun guardarUsuarios(usuario:Usuario) {
+        Implementacion().insertUsuario(usuario)
+    }
+    /*private fun guardarUsuarios(usuarios: List<Usuario>) {
         val fileOutputStream = FileOutputStream(archivo)
         val objectOutputStream = ObjectOutputStream(fileOutputStream)
         for (usuario in usuarios) {
@@ -67,6 +67,8 @@ class GestionarFicheros {
         }
         objectOutputStream.close()
     }
+
+     */
     /*private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
