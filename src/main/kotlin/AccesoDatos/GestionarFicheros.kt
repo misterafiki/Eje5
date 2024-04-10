@@ -31,7 +31,7 @@ class GestionarFicheros {
             println("No hay usuarios para mostrar.")
         }
     }
-    fun borrarUusario(email: String) {
+    fun borrarUsuario(email: String) {
         val listaUsuarios = leerUsuarios()
         /*val emailBuscado = email.lowercase(Locale.getDefault())
         var encontrada = false
@@ -42,7 +42,11 @@ class GestionarFicheros {
             } else {
                 listaUsuariosBorrar.add(usuario)
             }
-        }*/
+        }
+        */
+        /*
+
+        */
         val listaUsuariosBorrar = arrayListOf<Usuario>()
         listaUsuariosBorrar.add(usuario)
         if (encontrada) {
@@ -56,6 +60,26 @@ class GestionarFicheros {
             println("No se encontró ningun usuario con ese email.")
         }
     }
+    fun borrarUsuariosJuan (email:String){
+        val usuarios = leerUsuarios()
+        val emailBuscado = email.lowercase(Locale.getDefault())
+        var encontrada = false
+        val nuevosUsuarios = arrayListOf<Usuario>()
+        for (usuario in usuarios) {
+            if (usuario.email.toLowerCase().startsWith(emailBuscado)) {
+                encontrada = true
+            } else {
+                nuevosUsuarios.add(usuario)
+            }
+        }
+        if (encontrada) {
+            guardarUsuarios(nuevosUsuarios)
+            println("Usuario borrado correctamente.")
+        } else {
+            println("No se encontró ningún usuario con ese título.")
+        }
+    }
+
     private fun guardarUsuarios(usuario:Usuario) {
         Implementacion().insertUsuario(usuario)
     }
