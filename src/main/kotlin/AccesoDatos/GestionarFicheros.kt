@@ -1,24 +1,21 @@
+package AccesoDatos
+
+import Usuario
 import java.io.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class GestionarFicheros {
 
-    private val archivo= "usuario.dat"
+    //private val archivo= "usuario.dat"
     private var listaUsuarios=ArrayList<Usuario>()
     init {
         listaUsuarios=leerUsuarios()
     }
 
     fun registrar(usuario: Usuario){
-        //var usuarios=leerUsuarios()
-        listaUsuarios.add(usuario)
         println("Usuario añadido....")
-        guardarUsuarios(listaUsuarios)
-//        val fileOutputStream = FileOutputStream(archivo,true)
-//        val objectOutputStream = ObjectOutputStream(fileOutputStream)
-//        objectOutputStream.writeObject(usuarios)
-//        objectOutputStream.close()
+        guardarUsuarios(usuario)
     }
 
     fun mostrarTodas() {
@@ -27,7 +24,7 @@ class GestionarFicheros {
             println("Listado de Usuarios:")
             var index = 0
             for (usuario in usuarios) {
-                println("${index}. ${usuario.nombre}  ${usuario.apellido} (${usuario.email}), ${usuario.edad}")
+                println("${index}. : nombre${usuario.nombre}  ${usuario.apellido}, email: ${usuario.email}, edad: ${usuario.edad}")
                 index++
             }
         } else {
@@ -35,33 +32,44 @@ class GestionarFicheros {
         }
     }
     fun borrarUusario(email: String) {
-        val peliculas = leerUsuarios()
-        val emailBuscado = email.lowercase(Locale.getDefault())
+        val listaUsuarios = leerUsuarios()
+        /*val emailBuscado = email.lowercase(Locale.getDefault())
         var encontrada = false
-        val nuevasPeliculas = arrayListOf<Usuario>()
-        for (pelicula in peliculas) {
-            if (pelicula.email.toLowerCase().startsWith(emailBuscado)) {
+        val listaUsuariosBorrar = arrayListOf<Usuario>()
+        for (usuario in listaUsuarios) {
+            if (usuario.email.toLowerCase().startsWith(emailBuscado)) {
                 encontrada = true
             } else {
-                nuevasPeliculas.add(pelicula)
+                listaUsuariosBorrar.add(usuario)
             }
-        }
+        }*/
+        val listaUsuariosBorrar = arrayListOf<Usuario>()
+        listaUsuariosBorrar.add(usuario)
         if (encontrada) {
-            guardarUsuarios(nuevasPeliculas)
-            println("Película borrada correctamente.")
+            for (usuarioParaBorrar in listaUsuariosBorrar) {
+                listaUsuarios.remove(usuarioParaBorrar)
+            }
+            guardarUsuarios(listaUsuarios)
+            println("Usuario borrado correctamente.")
+
         } else {
-            println("No se encontró ninguna película con ese título.")
+            println("No se encontró ningun usuario con ese email.")
         }
     }
-    private fun guardarUsuarios(usuarios: List<Usuario>) {
+    private fun guardarUsuarios(usuario:Usuario) {
+        Implementacion().insertUsuario(usuario)
+    }
+    /*private fun guardarUsuarios(usuarios: List<Usuario>) {
         val fileOutputStream = FileOutputStream(archivo)
         val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        for (pelicula in usuarios) {
-            objectOutputStream.writeObject(pelicula)
+        for (usuario in usuarios) {
+            objectOutputStream.writeObject(usuario)
         }
         objectOutputStream.close()
     }
-    private fun leerUsuarios(): ArrayList<Usuario> {
+
+     */
+    /*private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
         if (archivo.exists()) {
@@ -81,22 +89,12 @@ class GestionarFicheros {
         }
         return usuarios
     }
-    /*fun leerUsuarios(): List<Usuario> {
-        val usuarios = mutableListOf<Usuario>()
-        File(archivo).forEachLine { linea ->
-            val datos = linea.split(",")
-            usuarios.add(
-                Usuario(
-                    datos[0],
-                    datos[1],
-                    datos[2],
-                    datos[3].toInt(),
-                    datos[4],
-                    datos[5].toBoolean(),
-                    datos[6].toBoolean()
-                )
-            )
-        }
+
+     */
+
+    private fun leerUsuarios(): ArrayList<Usuario> {
+        var usuarios = ArrayList<Usuario>()
+            usuarios=Implementacion().getAllUsuarios()
         return usuarios
-    }*/
+    }
 }

@@ -1,5 +1,9 @@
+package Presentacion
+
+import Usuario
+
 class Registrar {
-    fun registrar():Usuario {
+    fun registrar(): Usuario {
         println("Registro de usuario:")
         print("Email: ")
         val email = readLine()!!
