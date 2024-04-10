@@ -74,4 +74,8 @@ class Usuario (var email:String,
         println("Cantidad de partidas ganadas: $cantidadPartidasGanadas")
         }
 
+    override fun toString(): String {
+        return "Usuario(email='$email', nombre='$nombre', apellido='$apellido', edad=$edad, esAdmin=$esAdmin, esEstandar=$esEstandar)"
+    }
+
 }

@@ -1,8 +1,4 @@
-package AccesoDatos
-
-import Usuario
 import java.io.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class GestionarFicheros {
@@ -19,7 +15,6 @@ class GestionarFicheros {
         println("Usuario añadido....")
         guardarUsuarios(listaUsuarios)
     }
-
     fun mostrarTodas() {
         val usuarios = leerUsuarios()
         if (usuarios.isNotEmpty()) {
@@ -33,8 +28,6 @@ class GestionarFicheros {
             println("No hay usuarios para mostrar.")
         }
     }
-
-
     fun buscarUsuario(email:String):Usuario?{
         var us:Usuario?=null
         listaUsuarios=leerUsuarios()
@@ -53,7 +46,6 @@ class GestionarFicheros {
         }
         objectOutputStream.close()
     }
-
     private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
@@ -74,7 +66,4 @@ class GestionarFicheros {
         }
         return usuarios
     }
-
-
-
 }
