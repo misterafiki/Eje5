@@ -1,3 +1,5 @@
+package Logica
+
 class ControlErrores {
     companion object {
 
@@ -26,5 +28,4 @@ class ControlErrores {
         }
 
     }
-
 }

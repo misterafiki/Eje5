@@ -1,5 +1,6 @@
 package Presentacion
 
+import Logica.ControlErrores
 import Usuario
 
 class Registrar {
