@@ -7,7 +7,7 @@ import kotlin.collections.ArrayList
 
 class GestionarFicheros {
 
-    //private val archivo= "usuario.dat"
+    private val archivo= "usuario.dat"
     private var listaUsuarios=ArrayList<Usuario>()
     init {
         listaUsuarios=leerUsuarios()
@@ -31,31 +31,8 @@ class GestionarFicheros {
             println("No hay usuarios para mostrar.")
         }
     }
-    fun borrarUusario(email: String) {
-        val listaUsuarios = leerUsuarios()
-        /*val emailBuscado = email.lowercase(Locale.getDefault())
-        var encontrada = false
-        val listaUsuariosBorrar = arrayListOf<Usuario>()
-        for (usuario in listaUsuarios) {
-            if (usuario.email.toLowerCase().startsWith(emailBuscado)) {
-                encontrada = true
-            } else {
-                listaUsuariosBorrar.add(usuario)
-            }
-        }*/
-        val listaUsuariosBorrar = arrayListOf<Usuario>()
-        listaUsuariosBorrar.add(usuario)
-        if (encontrada) {
-            for (usuarioParaBorrar in listaUsuariosBorrar) {
-                listaUsuarios.remove(usuarioParaBorrar)
-            }
-            guardarUsuarios(listaUsuarios)
-            println("Usuario borrado correctamente.")
 
-        } else {
-            println("No se encontró ningun usuario con ese email.")
-        }
-    }
+
     fun buscarUsuario(email:String):Usuario?{
         var us:Usuario?=null
         listaUsuarios=leerUsuarios()
@@ -66,20 +43,16 @@ class GestionarFicheros {
         }
         return us
     }
-    private fun guardarUsuarios(usuario:Usuario) {
-        Implementacion().insertUsuario(usuario)
-    }
-    /*private fun guardarUsuarios(usuarios: List<Usuario>) {
+    private fun guardarUsuarios(usuarios: List<Usuario>) {
         val fileOutputStream = FileOutputStream(archivo)
         val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        for (usuario in usuarios) {
-            objectOutputStream.writeObject(usuario)
+        for (pelicula in usuarios) {
+            objectOutputStream.writeObject(pelicula)
         }
         objectOutputStream.close()
     }
 
-     */
-    /*private fun leerUsuarios(): ArrayList<Usuario> {
+    private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
         if (archivo.exists()) {
@@ -100,11 +73,6 @@ class GestionarFicheros {
         return usuarios
     }
 
-     */
 
-    private fun leerUsuarios(): ArrayList<Usuario> {
-        var usuarios = ArrayList<Usuario>()
-            usuarios=Implementacion().getAllUsuarios()
-        return usuarios
-    }
+
 }
