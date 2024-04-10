@@ -56,6 +56,16 @@ class GestionarFicheros {
             println("No se encontró ningun usuario con ese email.")
         }
     }
+    fun buscarUsuario(email:String):Usuario?{
+        var us:Usuario?=null
+        listaUsuarios=leerUsuarios()
+        for (usuario in listaUsuarios){
+            if (email==usuario.email){
+                us=usuario
+            }
+        }
+        return us
+    }
     private fun guardarUsuarios(usuario:Usuario) {
         Implementacion().insertUsuario(usuario)
     }
