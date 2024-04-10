@@ -14,8 +14,10 @@ class GestionarFicheros {
     }
 
     fun registrar(usuario: Usuario){
+        //var usuarios=leerUsuarios()
+        listaUsuarios.add(usuario)
         println("Usuario añadido....")
-        guardarUsuarios(usuario)
+        guardarUsuarios(listaUsuarios)
     }
 
     fun mostrarTodas() {
