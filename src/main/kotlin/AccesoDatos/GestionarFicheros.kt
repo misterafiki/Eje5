@@ -14,14 +14,11 @@ class GestionarFicheros {
     }
 
     fun registrar(usuario: Usuario){
-        //var usuarios=leerUsuarios()
+        var usuarios=leerUsuarios()
         listaUsuarios.add(usuario)
         println("Usuario añadido....")
         guardarUsuarios(listaUsuarios)
-//        val fileOutputStream = FileOutputStream(archivo,true)
-//        val objectOutputStream = ObjectOutputStream(fileOutputStream)
-//        objectOutputStream.writeObject(usuarios)
-//        objectOutputStream.close()
+
     }
 
     fun mostrarTodas() {
@@ -70,7 +67,7 @@ class GestionarFicheros {
         }
         objectOutputStream.close()
     }
-    private fun leerUsuarios(): ArrayList<Usuario> {
+    /*private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
         val archivo = File(archivo)
         if (archivo.exists()) {
@@ -90,22 +87,12 @@ class GestionarFicheros {
         }
         return usuarios
     }
-    /*fun leerUsuarios(): List<Usuario> {
-        val usuarios = mutableListOf<Usuario>()
-        File(archivo).forEachLine { linea ->
-            val datos = linea.split(",")
-            usuarios.add(
-                Usuario(
-                    datos[0],
-                    datos[1],
-                    datos[2],
-                    datos[3].toInt(),
-                    datos[4],
-                    datos[5].toBoolean(),
-                    datos[6].toBoolean()
-                )
-            )
-        }
+
+     */
+
+    private fun leerUsuarios(): ArrayList<Usuario> {
+        var usuarios = ArrayList<Usuario>()
+            usuarios=Implementacion().getAllUsuarios()
         return usuarios
-    }*/
+    }
 }

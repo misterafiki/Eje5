@@ -3,10 +3,12 @@ import java.sql.*
 class ConexionBD {
     private val url = "jdbc:mysql://localhost/usuarios"
     private var conn: Connection? = null
+    private val user = "root"
+    private val pass = ""
     fun conectar() {
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver")
-            conn = DriverManager.getConnection(url)
+            Class.forName("com.mysql.cj.jdbc.Driver")
+            conn = DriverManager.getConnection(url, user, pass)
         } catch (e: SQLException) {
             e.printStackTrace()
         } catch (e: ClassNotFoundException) {

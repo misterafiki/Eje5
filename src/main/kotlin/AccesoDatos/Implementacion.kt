@@ -43,7 +43,7 @@ class Implementacion : InterfacesUsuarios {
     /**Falta por terminar el insert, delete y update configuracion correspondiente al Gestion fichero **/
     override fun insertUsuario(usuario: Usuario): Boolean {
         conexion.conectar()
-        val query = "INSERT INTO usuarios (email, nombre, apellidos, edad, pass, esAdmin, esEstandar) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        val query = "INSERT INTO usuarios (email, nombre, apellidos, edad, pass, esAdmin, esEstandar) VALUES (?, ?, ?, ?, ?, ?, ?)"
         val ps = conexion.getPreparedStatement(query)
         ps?.setString(1, usuario.email)
         ps?.setString(2, usuario.nombre)
@@ -60,7 +60,7 @@ class Implementacion : InterfacesUsuarios {
 
     override fun updateusuario(usuario: Usuario): Boolean {
         conexion.conectar()
-        val query = "UPDATE usuarios SET nombre = ? WHERE email = ?"
+        val query = "UPDATE usuarios SET email = ? WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
         ps?.setString(1, usuario.nombre)
         ps?.setString(2, usuario.email)
@@ -70,11 +70,11 @@ class Implementacion : InterfacesUsuarios {
         return result == 1
     }
 
-    override fun deleteUsuario(codigo: String): Boolean {
+    override fun deleteUsuario(email: String): Boolean {
         conexion.conectar()
         val query = "DELETE FROM usuarios WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setString(1, codigo)
+        ps?.setString(1, email)
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()

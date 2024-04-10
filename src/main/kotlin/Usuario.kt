@@ -2,7 +2,6 @@ import conexionBBDD.InterfacesUsuarios
 import java.io.Serializable
 import Usuario as Usuario
 
-
 class Usuario (var email:String,
                         var nombre:String,
                         var apellido:String,
@@ -18,14 +17,6 @@ class Usuario (var email:String,
                var pass:String,
                var esAdmin:Boolean=false,
                var esEstandar:Boolean=true):Serializable {*/
-
-   /* lateinit var email:String
-    lateinit var nombre:String
-    lateinit var apellido:String
-    var edad:Int = 0
-    lateinit var pass:String
-    var esAdmin:Boolean=false
-    var esEstandar:Boolean=true*/
 
    /* constructor(){}
     constructor(email: String, nombre: String, apellido: String, edad: Int, pass: String) {
