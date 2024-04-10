@@ -1,19 +1,23 @@
+package Presentacion
+
+import GestionarFicheros
+
 class Menu {
 
     companion object {
 
         fun menuPrincipal() {
             println("Bienvenido al sistema:")
-            println("1.- Login")
+            println("1.- Presentacion.Login")
             println("2.- Registrar")
             println("3.- Salir")
-            val USER=Usuario()
-            val GESTION =GestionarFicheros()
+            val USER= Usuario()
+            val GESTION = GestionarFicheros()
 
             when (val opcion = readLine()?.toIntOrNull()) {
                 1 -> USER.login()
                 2 -> GESTION.registrar()
-                3 -> Menu.salida()
+                3 -> salida()
                 else -> {
                     println("Opción inválida. Por favor, seleccione una opción válida.")
                     menuPrincipal()
@@ -22,8 +26,8 @@ class Menu {
         }
 
         fun menuAdmin() {
-            val USER=Usuario()
-            val GESTION =GestionarFicheros()
+            val USER= Usuario()
+            val GESTION = GestionarFicheros()
             println("Menú de administrador:")
             println("1.- Añadir usuario")
             println("2.- Mostrar usuarios")
@@ -33,7 +37,7 @@ class Menu {
             println("6.- Cambiar permisos de usuario")
             println("7.- Salir")
 
-            //2 y 3 van a acceder al arrayList de usuarios que se encuentra en Usuario
+            //2 y 3 van a acceder al arrayList de usuarios que se encuentra en Presentacion.Usuario
             when (val opcion = readLine()?.toIntOrNull()) {
                 1 -> GESTION.registrarPorAdmin()
                 2 -> USER.mostrarUsuarios()

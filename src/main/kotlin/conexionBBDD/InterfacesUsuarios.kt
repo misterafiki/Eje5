@@ -1,6 +1,6 @@
 package conexionBBDD
 
-import Usuario
+import Presentacion.Usuario
 
 interface InterfacesUsuarios {
     fun getUsuarioByEmail(email: Int): Usuario?

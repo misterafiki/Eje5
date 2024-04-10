@@ -1,10 +1,9 @@
 package Presentacion
 
 import Logica.ControlErrores
-import Usuario
 
 class Registrar {
-    fun registrar():Usuario {
+    fun registrar(): Usuario {
         var email =""
         var nombre =""
         var apellido1 =""

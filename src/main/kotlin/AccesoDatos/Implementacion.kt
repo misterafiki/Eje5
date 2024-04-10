@@ -1,6 +1,6 @@
 package AccesoDatos
 
-import Usuario
+import Presentacion.Usuario
 import conexionBBDD.InterfacesUsuarios
 import conexionBBDD.ConexionBD
 

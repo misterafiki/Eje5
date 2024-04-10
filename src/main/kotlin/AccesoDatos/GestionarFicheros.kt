@@ -1,3 +1,4 @@
+import Presentacion.Usuario
 import java.io.*
 import kotlin.collections.ArrayList
 
@@ -12,7 +13,7 @@ class GestionarFicheros {
     fun registrar(usuario: Usuario){
         //var usuarios=leerUsuarios()
         listaUsuarios.add(usuario)
-        println("Usuario añadido....")
+        println("Presentacion.Usuario añadido....")
         guardarUsuarios(listaUsuarios)
     }
     fun mostrarTodas() {
@@ -28,8 +29,8 @@ class GestionarFicheros {
             println("No hay usuarios para mostrar.")
         }
     }
-    fun buscarUsuario(email:String):Usuario?{
-        var us:Usuario?=null
+    fun buscarUsuario(email:String): Usuario?{
+        var us: Usuario?=null
         listaUsuarios=leerUsuarios()
         for (usuario in listaUsuarios){
             if (email==usuario.email){

@@ -1,6 +1,4 @@
-import conexionBBDD.InterfacesUsuarios
-import java.io.Serializable
-import Usuario as Usuario
+package Presentacion
 
 class Usuario (var email:String,
                         var nombre:String,
@@ -10,7 +8,7 @@ class Usuario (var email:String,
                         var esAdmin:Boolean=false,
                         var esEstandar:Boolean=true) {
 
-/*class Usuario (var email:String,
+/*class Presentacion.Usuario (var email:String,
                var nombre:String,
                var apellido:String,
                var edad:Int,
@@ -75,7 +73,7 @@ class Usuario (var email:String,
         }
 
     override fun toString(): String {
-        return "Usuario(email='$email', nombre='$nombre', apellido='$apellido', edad=$edad, esAdmin=$esAdmin, esEstandar=$esEstandar)"
+        return "Presentacion.Usuario(email='$email', nombre='$nombre', apellido='$apellido', edad=$edad, esAdmin=$esAdmin, esEstandar=$esEstandar)"
     }
 
 }

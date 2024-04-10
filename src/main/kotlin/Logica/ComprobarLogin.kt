@@ -1,6 +1,6 @@
 package Logica
 
-import Usuario
+import Presentacion.Usuario
 
 class ComprobarLogin {
 
