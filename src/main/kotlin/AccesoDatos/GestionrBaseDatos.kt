@@ -2,9 +2,8 @@ class GestionarBaseDatos{
 
     fun registrar(usuario: Usuario){
         //var usuarios=leerUsuarios()
-        listaUsuarios.add(usuario)
         println("Presentacion.Usuario añadido....")
-        guardarUsuarios(listaUsuarios)
+        guardarUsuario()
     }
     fun mostrarTodas() {
         val usuarios = leerUsuarios()
@@ -29,32 +28,13 @@ class GestionarBaseDatos{
         }
         return us
     }
-    private fun guardarUsuarios(usuarios: List<Usuario>) {
-        val fileOutputStream = FileOutputStream(archivo)
-        val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        for (pelicula in usuarios) {
-            objectOutputStream.writeObject(pelicula)
-        }
-        objectOutputStream.close()
+    private fun guardarUsuarios(usuarios:Usuario){
+
     }
     private fun leerUsuarios(): ArrayList<Usuario> {
         val usuarios = arrayListOf<Usuario>()
-        val archivo = File(archivo)
+        
         if (archivo.exists()) {
             var objectInputStream: ObjectInputStream? = null
-            try {
-                objectInputStream = ObjectInputStream(FileInputStream(archivo))
-//                println(listOf(objectInputStream).size)
-                while (true) {
-                    val usuario = objectInputStream.readObject() as Usuario
-                    usuarios.add(usuario)
-                }
-            } catch (e: EOFException) {
-                // Se alcanzó el final del archivo
-            } finally {
-                objectInputStream?.close()
-            }
-        }
-        return usuarios
-    }
+            retun usuarios 
 }
