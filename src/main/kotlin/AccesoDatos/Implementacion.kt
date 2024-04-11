@@ -7,11 +7,11 @@ import conexionBBDD.ConexionBD
 class Implementacion : InterfacesUsuarios {
     private val conexion = ConexionBD()
 
-    override fun getUsuarioByEmail(email: Int): Usuario? {
+    override fun getUsuarioByEmail(email: String): Usuario? {
         conexion.conectar()
         val query = "SELECT * FROM usuarios WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setInt(1, email)
+        ps?.setString(1, email)
         val rs = ps?.executeQuery()
         var usuario: Usuario? = null
         if (rs?.next() == true) {
@@ -40,7 +40,7 @@ class Implementacion : InterfacesUsuarios {
         conexion.desconectar()
         return usuarios
     }
-    /**Falta por terminar el insert, delete y update configuracion correspondiente al Gestion fichero **/
+
     override fun insertUsuario(usuario: Usuario): Boolean {
         conexion.conectar()
         val query = "INSERT INTO usuarios (email, nombre, apellidos, edad, pass, esAdmin, esEstandar) VALUES (?, ?, ?, ?, ?, ?, ?)"
@@ -60,7 +60,7 @@ class Implementacion : InterfacesUsuarios {
 
     override fun updateusuario(usuario: Usuario): Boolean {
         conexion.conectar()
-        val query = "UPDATE usuarios SET email = ? WHERE email = ?"
+        val query = "UPDATE usuarios SET nombre = ? WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
         ps?.setString(1, usuario.nombre)
         ps?.setString(2, usuario.email)

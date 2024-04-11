@@ -29,6 +29,18 @@ class GestionarFicheros {
             println("No hay usuarios para mostrar.")
         }
     }
+    fun borrarUsuario(email:String){
+        listaUsuarios = leerUsuarios()
+        for (usuario in listaUsuarios) {
+            if (email == usuario.email) {
+                listaUsuarios.remove(usuario)
+                guardarUsuarios(listaUsuarios)
+            } else println("El email introducido no ha sido encontrado")
+
+        }
+
+    }
+
     fun buscarUsuario(email:String): Usuario?{
         var us: Usuario?=null
         listaUsuarios=leerUsuarios()
@@ -42,8 +54,8 @@ class GestionarFicheros {
     private fun guardarUsuarios(usuarios: List<Usuario>) {
         val fileOutputStream = FileOutputStream(archivo)
         val objectOutputStream = ObjectOutputStream(fileOutputStream)
-        for (pelicula in usuarios) {
-            objectOutputStream.writeObject(pelicula)
+        for (usuario in usuarios) {
+            objectOutputStream.writeObject(usuario)
         }
         objectOutputStream.close()
     }
