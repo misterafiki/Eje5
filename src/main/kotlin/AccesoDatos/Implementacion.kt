@@ -58,7 +58,7 @@ class Implementacion : InterfacesUsuarios {
         return result == 1
     }
 
-    override fun updateusuario(usuario: Usuario): Boolean {
+    override fun updateUsuario(usuario: Usuario): Boolean {
         conexion.conectar()
         val query = "UPDATE usuarios SET nombre = ? WHERE email = ?"
         val ps = conexion.getPreparedStatement(query)
