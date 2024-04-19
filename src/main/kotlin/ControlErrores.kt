@@ -24,6 +24,14 @@ class ControlErrores {
             }
             return esCorrecto
         }
+        fun validarRespuesta(respuesta:String,rango1:Int,rango2:Int):Boolean{
+            var esCorrecta=false
+           var opcion=respuesta.toIntOrNull()
+            if (opcion in rango1..rango2){
+                esCorrecta=true
+            }else println("Opcion incorrecta")
+            return esCorrecta
+        }
 
 }
 
