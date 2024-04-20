@@ -65,6 +65,7 @@ class UsuarioDAOFicheros {
                 }
                 correcto=true
             }
+
         }
         g.guardarUsuarios(listaUs)
         return correcto
