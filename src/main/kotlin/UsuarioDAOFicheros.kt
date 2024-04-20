@@ -1,4 +1,4 @@
-class ControladorUsuario {
+class UsuarioDAOFicheros {
     val g=GestionarFicheros()
     fun comprobar(usuario:Usuario?, pass:String):Boolean{
         var passCorrecta=false
@@ -47,12 +47,38 @@ class ControladorUsuario {
                 borrado=true
             }
         }
+
         g.guardarUsuarios(listaUsuarios)
         return borrado
     }
-    fun modificarUsuario(modificaciones:ArrayList<Int>){
-
+    fun modificarUsuario(usuario: Usuario,modificacion:Int,valor:String):Boolean{
+        var listaUs=g.leerUsuarios()
+        var correcto=false
+        for (i in 0..<listaUs.size){
+            if (listaUs[i].email==usuario.email){
+                if (modificacion==1) {
+                    modificarNombre(listaUs[i],valor)
+                }else if (modificacion==2){
+                    modificarApellido(listaUs[i],valor)
+                }else if (modificacion==3){
+                    modficarEdad(listaUs[i],valor)
+                }
+                correcto=true
+            }
+        }
+        g.guardarUsuarios(listaUs)
+        return correcto
     }
-
-
+    fun modificarNombre(usuario: Usuario,nombre:String):Usuario{
+        usuario.nombre=nombre
+        return usuario
+    }
+    fun modificarApellido(usuario: Usuario,apellidos:String):Usuario{
+        usuario.apellido=apellidos
+        return usuario
+    }
+    fun modficarEdad(usuario: Usuario,edad:String):Usuario{
+        usuario.edad=edad.toInt()
+        return usuario
+    }
 }

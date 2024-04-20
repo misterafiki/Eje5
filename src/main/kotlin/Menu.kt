@@ -70,7 +70,7 @@ class Menu {
         do {
             print("Segundo Apellido: ")
             apellido2= readLine()!!
-            datos.add(apellido1+apellido2)
+            datos.add(apellido1+" "+apellido2)
         }while (!ControlErrores.validarNombreApellido(apellido2))
         do {
             print("Edad: ")
@@ -88,13 +88,65 @@ class Menu {
 
        return email
     }
+    fun pedirEmailModificar():String{
+
+        println("Introducel el email a modificar")
+        var email= readln()
+
+        return email
+    }
     fun salida(): String {
-        return "¡Hasta luego!"
+        var despedida="¡Hasta luego!"
+        return despedida
     }
 
-    fun menuModificarUsuario(){
-
+    fun menuModificarUsuario():Int{
+        var opcion=""
+        do {
+            println("Que quieres modificar: \n1->Nombre\n2->Apellidos\n3->Edad")
+            opcion= readln()
+        }while (!ControlErrores.validarRespuesta(opcion,1,3))
+        var opcionCorrecta=opcion.toInt()
+        return opcionCorrecta
     }
+    fun menuModificaciones(modificacion:Int):String{
+        var cambio=""
+        if (modificacion==1){
 
+            do {
+                println("Introduce el nuevo nombre")
+                cambio= readln()
+            }while (!ControlErrores.validarNombreApellido(cambio))
+
+        }else if (modificacion==2){
+            var apellido1=""
+            var apellido2=""
+            do {
+                println("Introduce el primer apellido")
+                apellido1= readln()
+                println("Introduce el segundo apellido")
+                apellido2= readln()
+
+            }while (!ControlErrores.validarNombreApellido(apellido1)||!ControlErrores.validarNombreApellido(apellido2))
+            cambio=apellido1+" "+apellido2
+        }else if (modificacion==3){
+            var edad:Int?=0
+            do {
+                println("Dime la nueva edad")
+                edad= readln().toIntOrNull()
+            }while (!ControlErrores.validarEdad(edad))
+            cambio=edad.toString()
+        }
+        return cambio
+    }
+    fun masModificaciones():Boolean{
+        var mas=false
+        println("Quieres modificar algo mas y/n")
+        var respuesta= readln()
+        if (respuesta.uppercase()=="Y"){
+            mas=true
+        }
+        return mas
+    }
 
 }

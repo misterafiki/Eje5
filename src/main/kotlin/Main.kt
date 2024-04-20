@@ -2,7 +2,8 @@ fun main() {
    /*var usuarioAdmin=Usuario("admin@gmail.com","admin","***",10,"1234",true,true)
     */
     var menu=Menu()
-    var controlador=ControladorUsuario()
+   var controlador=UsuarioDAOFicheros()
+    //var controlador=UsuarioDAO()
     var user:Usuario?
     var juego=Juego()
         var opcion= menu.menuPrincipal()
@@ -46,7 +47,22 @@ fun main() {
 
 
                                 }
-                                5->{}
+                                5->{
+                                    var modificacion=0
+                                    var usModificado:Usuario?
+                                    do {
+                                        do {
+                                        var email=menu.pedirEmailModificar()
+                                        usModificado=controlador.buscarUsuario(email)
+                                        }while (usModificado==null)
+
+                                        modificacion=menu.menuModificarUsuario()
+                                        var cambio=menu.menuModificaciones(modificacion)
+                                        controlador.modificarUsuario(usModificado,modificacion,cambio)
+
+                                    }while (menu.masModificaciones())
+
+                                }
                                 6->{}
                                 7->{menu.salida()}
                             }
@@ -62,6 +78,7 @@ fun main() {
 
                 var datos=menu.pedirDatosRegistro()
                 user=Usuario(datos[0],datos[1],datos[2],datos[3].toInt(),datos[4])
+                controlador.registrar(user)
 
             }
             3->{
